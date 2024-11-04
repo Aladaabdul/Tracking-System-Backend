@@ -7,6 +7,18 @@ const createDocType = async (req, res) => {
 
     const { type_name, description } = req.body;
 
+    let type;
+
+    try {
+        type = DocType.findOne({type_name: type})
+    } catch (error) {
+        return comsole.log(error)
+    }
+
+    if (type) {
+        return res.status(400).json({message: "This document type already exist"})
+    }
+
     const doctype = new DocType({
         type_name,
         description
