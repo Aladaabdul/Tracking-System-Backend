@@ -5,7 +5,7 @@ const DocType = require("../models/documentType");
 //create new Document
 const createDocument = async (req, res) => {
 
-    const { title, status, created_by, current_location, document_type_id } = req.body;
+    const { title, status, created_by, current_location, submitted_by, document_type_id } = req.body;
 
     let documentType;
 
@@ -24,6 +24,7 @@ const createDocument = async (req, res) => {
             status,
             created_by,
             current_location,
+            submitted_by,
             document_type_id: documentType._id
     });
 

@@ -42,6 +42,12 @@ const DocSchema = new Schema ({
         required: "true"
     },
 
+    submitted_by: {
+        type: String,
+        required: true,
+        default: ""
+    },
+
     document_type_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "DocType",
