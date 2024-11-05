@@ -9,6 +9,7 @@ docRouter.get('/documents', docController.getAllDocument);
 docRouter.get('/document/:docId', docController.getDocumentById);
 docRouter.put('/document/update/:docId', docController.updateDocument);
 docRouter.delete('/document/delete/:docId', docController.deleteDocument);
+docRouter.get('/documents/search', docController.searchDocument);
 
 
 module.exports = docRouter;

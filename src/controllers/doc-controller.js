@@ -121,6 +121,29 @@ const deleteDocument = async (req, res) => {
     return res.status(200).json({message: "Document deleted successfully"});
 }
 
+const searchDocument = async (req, res) => {
+
+    const { title, doc_id } = req.query;
+
+    const filter = {};
+
+    if (title) filter.title = { $regex: title, $options: 'i' };
+    if (doc_id) filter.doc_id = doc_id;
+    
+    let documents;
+    try {
+        documents = await Document.find(filter);
+    } catch (error) {
+        return console.log(error);
+    }
+
+    if (!documents || documents.length === 0) {
+        return res.status(404).json({message: "No documents found"});
+    }
+
+    return res.status(200).json(documents)
+}
+
 
 module.exports = {
 
@@ -128,5 +151,6 @@ module.exports = {
     getAllDocument,
     getDocumentById,
     updateDocument,
-    deleteDocument
+    deleteDocument,
+    searchDocument
 }
