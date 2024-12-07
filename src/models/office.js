@@ -33,7 +33,7 @@ const OfficeModelSchema = new Schema({
 
 // Middleware to auto-generate office_id before saving
 OfficeModelSchema.pre("save", async function (next) {
-    // Only generate office_id if it's a new document
+  
     if (this.isNew && !this.office_id) {
       const randomDigits = Math.floor(1000 + Math.random() * 9000);
     //   const prefix = this.office_name.slice(0, 3).toUpperCase();

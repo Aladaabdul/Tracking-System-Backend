@@ -48,11 +48,11 @@ const DocSchema = new Schema ({
         default: ""
     },
 
-    document_type_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "DocType",
-        required: "true"   
-    }
+    // document_type_id: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "DocType",
+    //     default: "Document"   
+    // }
 })
 
 

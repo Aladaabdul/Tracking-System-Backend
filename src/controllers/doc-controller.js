@@ -5,27 +5,22 @@ const DocType = require("../models/documentType");
 //create new Document
 const createDocument = async (req, res) => {
 
-    const { title, status, created_by, current_location, submitted_by, document_type_id } = req.body;
+    const { title, status, created_by, current_location, submitted_by} = req.body;
 
-    let documentType;
+    // let documentType;
 
-    try {
-        documentType = await DocType.findOne({ type_name: document_type_id });
-        
-        if (!documentType) {
-          return res.status(400).json({ error: "Invalid document type name." });
-        }
-    } catch (error) {
-        return console.log(error)
-    }
+    // try {
+    //     documentType = await DocType.findOne({ type_name: document_type_id });
+    // } catch (error) {
+    //     return console.log(error)
+    // }
 
     const document = new Document({
             title,
             status,
             created_by,
             current_location,
-            submitted_by,
-            document_type_id: documentType._id
+            submitted_by
     });
 
     try {
@@ -80,7 +75,7 @@ const updateDocument = async (req, res) => {
 
     const docId = req.params.docId;
 
-    const { title, status, current_location, document_type_id } = req.body;
+    const { title, status, current_location} = req.body;
 
     let document
 
@@ -88,8 +83,7 @@ const updateDocument = async (req, res) => {
         document = await Document.findByIdAndUpdate(docId, {
             title,
             status,
-            current_location,
-            document_type_id
+            current_location
         })
     } catch(error) {
         return console.log(error)
