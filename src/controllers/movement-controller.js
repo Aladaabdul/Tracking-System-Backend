@@ -8,7 +8,11 @@ const createMovement = async (req, res) => {
 
     const docId = req.params.docId;
 
-    const { from_office, to_office } = req.body;
+    const { to_office } = req.body;
+
+    let officeId = req.office.officeId
+
+    console.log(officeId)
 
     let document
     try {
@@ -22,7 +26,7 @@ const createMovement = async (req, res) => {
     }
 
     const movement = new Movement({
-        from_office,
+        from_office: officeId,
         to_office,
         document_id: docId
     })

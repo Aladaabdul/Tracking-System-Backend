@@ -6,12 +6,14 @@ const doctypeRouter = require("./routes/doctype-route");
 const docRouter = require("./routes/doc-route");
 const movementRouter = require("./routes/movement-route");
 const docLogRouter = require("./routes/doclog-route");
+const cors = require("cors")
 
 dotenv.config();
 
 
 const PORT = 8000 || process.env.PORT
 const app = express()
+app.use(cors())
 
 ConnectToMongo()
 app.use(express.json())
