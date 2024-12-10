@@ -16,7 +16,7 @@ const DocSchema = new Schema ({
 
     status: {
         type: String,
-        enum: ["pending", "approved"],
+        enum: ["pending", "received", "minuited", "approved", "rejected"],
         default: "pending"
     },
 
@@ -48,11 +48,21 @@ const DocSchema = new Schema ({
         default: ""
     },
 
-    // document_type_id: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "DocType",
-    //     default: "Document"   
-    // }
+    reference_number: {
+        type: String,
+        default: ""
+    },
+
+    submitted_to: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Office",
+        required: "true"
+    },
+
+    progress: {
+        type: String,
+        default: ""
+    }
 })
 
 

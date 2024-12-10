@@ -154,6 +154,29 @@ const deleteOffice = async(req, res) => {
 }
 
 
+const getAuthOffice = async(req, res) => {
+
+    const officeId = req.office.officeId;
+
+    if (!officeId) {
+        return res.status(403).json({message: "No authorization provided"})
+    }
+
+    let office;
+
+    try {
+        office = await Office.findOne({_id: officeId})
+    } catch(err) {
+        return console.log(err)
+    }
+
+    if (!office) {
+        return res.status(404).json({message: "No office found"})
+    }
+
+    return res.status(200).json({office})
+}
+
 
 
 module.exports = {
@@ -162,5 +185,6 @@ module.exports = {
     getAllOffice,
     getOfficeById,
     updateOffice,
-    deleteOffice
+    deleteOffice,
+    getAuthOffice
 }

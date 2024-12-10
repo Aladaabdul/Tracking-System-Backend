@@ -1,7 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
-const secretKey = process.env.SECRET_KEY
+const secretKey = process.env.TOKEN_KEY
 
 const authenticateOffice = (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];

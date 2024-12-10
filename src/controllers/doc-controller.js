@@ -5,7 +5,7 @@ const DocType = require("../models/documentType");
 //create new Document
 const createDocument = async (req, res) => {
 
-    const { title, status, created_by, current_location, submitted_by} = req.body;
+    const { title, status, created_by, current_location, submitted_by, reference_number, submitted_to, progress} = req.body;
 
     // let documentType;
 
@@ -20,7 +20,10 @@ const createDocument = async (req, res) => {
             status,
             created_by,
             current_location,
-            submitted_by
+            submitted_by,
+            reference_number,
+            submitted_to,
+            progress
     });
 
     try {
@@ -75,15 +78,14 @@ const updateDocument = async (req, res) => {
 
     const docId = req.params.docId;
 
-    const { title, status, current_location} = req.body;
+    const { status, progress} = req.body;
 
     let document
 
     try {
         document = await Document.findByIdAndUpdate(docId, {
-            title,
             status,
-            current_location
+            progress
         })
     } catch(error) {
         return console.log(error)
