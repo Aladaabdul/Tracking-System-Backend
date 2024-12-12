@@ -14,7 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT || 8000
 const app = express()
 
-app.use(cors({ origin: ['http://localhost:80', 'https://localhost:443'] }))
+app.use(cors({ origin: "*" }))
 
 ConnectToMongo()
 app.use(express.json())
