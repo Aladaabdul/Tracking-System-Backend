@@ -11,9 +11,10 @@ const cors = require("cors")
 dotenv.config();
 
 
-const PORT = 8000 || process.env.PORT
+const PORT = process.env.PORT || 8000
 const app = express()
-app.use(cors())
+
+app.use(cors({ origin: '*' }))
 
 ConnectToMongo()
 app.use(express.json())

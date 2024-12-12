@@ -27,6 +27,11 @@ const OfficeModelSchema = new Schema({
     admin_name: {
         type: String,
         required: true
+    },
+
+    officer_name: {
+      type: String,
+      required: true
     }
 })
 
