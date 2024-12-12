@@ -8,7 +8,7 @@ const secretKey = process.env.TOKEN_KEY
 // Register a new office
 const registerOffice = async (req, res) => {
 
-    const { password, office_name, location, admin_name, officer_name } = req.body;
+    const { password, office_name, location, admin_name} = req.body;
 
     let existingOffice;
 
@@ -29,8 +29,7 @@ const registerOffice = async (req, res) => {
         office_name,
         password: hashedPassword,
         location,
-        admin_name,
-        officer_name
+        admin_name
     })
 
     try {
