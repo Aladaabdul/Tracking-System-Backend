@@ -49,6 +49,8 @@ OfficeModelSchema.pre("save", async function (next) {
         return next(new Error("Generated office_id already exists. Please try again."));
       }
     }
+
+    this.last_modified = new Date()
     next();
   });
   

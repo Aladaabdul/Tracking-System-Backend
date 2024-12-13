@@ -81,10 +81,14 @@ DocSchema.pre("save", async function(next) {
           return next(new Error("Generated doc_id already exists. Please try again."));
         }
       }
-    
-    this.last_modified = new Date()
     next()
 })
+
+// Handle updates to ensure last_modified is updated
+DocSchema.pre('findOneAndUpdate', function (next) {
+    this.set({ last_modified: new Date() });
+    next();
+  });
 
 // Middleware to auto-generate doc_id before saving
 // DocSchema.pre("save", async function (next) {

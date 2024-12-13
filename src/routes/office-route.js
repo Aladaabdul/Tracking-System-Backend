@@ -12,6 +12,6 @@ officeRouter.get('/offices', officeController.getAllOffice);
 officeRouter.get('/office/:officeId', officeController.getOfficeById);
 officeRouter.put('/office/update/:officeId', officeController.updateOffice);
 officeRouter.delete('/office/delete/:officeId', officeController.deleteOffice);
-
+officeRouter.post('/auth/changepassword/:officeId', officeController.changePassword);
 
 module.exports = officeRouter

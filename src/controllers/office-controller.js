@@ -178,6 +178,38 @@ const getAuthOffice = async(req, res) => {
 }
 
 
+const changePassword = async (req, res) => {
+
+    const officeId = req.params.officeId
+
+    const { oldPassword, newPassword } = req.body
+
+    let existingOffice;
+
+    try {
+        existingOffice = await Office.findById(officeId)
+    } catch (err) {
+        return console.log(err)
+    }
+
+    const comparePassword = bcrypt.compareSync(oldPassword, existingOffice.password)
+
+    if (!comparePassword) {
+        return res.status(400).json({message: "Invalid Password"})
+    }
+
+    existingOffice.password = await bcrypt.hashSync(newPassword)
+
+    try {
+        await existingOffice.save()
+    } catch (err) {
+        return console.log(err)
+    }
+
+    return res.status(200).json({message: "Password changed successfully"})
+}
+
+
 
 module.exports = {
     registerOffice,
@@ -186,5 +218,6 @@ module.exports = {
     getOfficeById,
     updateOffice,
     deleteOffice,
-    getAuthOffice
+    getAuthOffice,
+    changePassword
 }

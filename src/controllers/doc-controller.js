@@ -78,14 +78,15 @@ const updateDocument = async (req, res) => {
 
     const docId = req.params.docId;
 
-    const { status, progress} = req.body;
+    const { status, progress, current_location} = req.body;
 
     let document
 
     try {
         document = await Document.findByIdAndUpdate(docId, {
             status,
-            progress
+            progress,
+            current_location
         })
     } catch(error) {
         return console.log(error)
