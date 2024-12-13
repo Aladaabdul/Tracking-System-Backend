@@ -88,25 +88,8 @@ DocSchema.pre("save", async function(next) {
 DocSchema.pre('findOneAndUpdate', function (next) {
     this.set({ last_modified: new Date() });
     next();
-  });
+});
 
-// Middleware to auto-generate doc_id before saving
-// DocSchema.pre("save", async function (next) {
-//     if (this.isNew && !this.doc_id) {
-//       const randomDigits = Math.floor(1000 + Math.random() * 9000);
-//       const prefix = this.title.slice(0, 3).toUpperCase();
-  
-//       // Generate the unique doc_id
-//       this.doc_id = `${prefix}${randomDigits}`;
-  
-//       // Check if doc_id already exists in the collection
-//       const existingDocId = await mongoose.models.Document.findOne({ office_id: this.office_id });
-//       if (existingDocId) {
-//         return next(new Error("Generated doc_id already exists. Please try again."));
-//       }
-//     }
-//     next();
-//   });
 
 
 module.exports = mongoose.model('Document', DocSchema);
